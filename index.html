@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0b0d">
+    <meta name="description" content="Task Manager Pro — glassmorphism task manager with live weather-driven rain droplets.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+    <title>Task Manager Pro</title>
+    <link rel="stylesheet" href="style.css?v=1.0.14">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="clock-block" aria-live="off">
+                <span id="clockTime" class="clock-time">--:--</span>
+                <span id="clockDate" class="clock-date"></span>
+                <select id="langSelect" class="lang-select" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="uk">Українська</option>
+                    <option value="zh">中文</option>
+                    <option value="ru">Русский</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+            <p class="subtitle" aria-live="polite">Organize your tasks and achieve your goals</p>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <span id="totalTasks" class="stat-number">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card">
+                <span id="pendingTasks" class="stat-number">0</span>
+                <span class="stat-label">Pending</span>
+            </div>
+            <div class="stat-card">
+                <span id="completedTasks" class="stat-number">0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-card">
+                <span id="pendingPercentage" class="stat-number">0%</span>
+                <span class="stat-label">Pending rate</span>
+            </div>
+        </div>
+
+        <div class="task-form-container">
+            <form id="taskForm" class="task-form">
+                <input type="text" id="taskInput" placeholder="New task" required autocomplete="off" aria-label="New task">
+                <select id="prioritySelect" aria-label="Priority">
+                    <option value="high">High</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <span class="date-wrap">
+                    <input type="date" id="dueDateInput" placeholder="Due date" title="Due date" aria-label="Due date">
+                    <span id="dueDatePlaceholder" class="date-placeholder" aria-hidden="true"></span>
+                </span>
+                <button type="submit" class="add-btn">Add task</button>
+            </form>
+        </div>
+
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+            <button class="filter-btn" data-filter="pending" aria-pressed="false">Pending</button>
+        </div>
+
+        <div class="task-list-container">
+            <div id="taskList" class="task-list"></div>
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="4" width="14" height="17" rx="2.5"></rect>
+                        <path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"></path>
+                        <path d="M9 11h6M9 15h4"></path>
+                    </svg>
+                </div>
+                <h3>No tasks yet</h3>
+                <p>Add your first task above to get started.</p>
+                <div class="tips-container">
+                    <span>Ctrl+Enter to add</span>
+                    <span>Set due dates</span>
+                    <span>Use priorities</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="clearCompleted" class="clear-completed-btn">Clear completed</button>
+    </div>
+
+    <script src="app.js?v=1.0.14"></script>
+    <!-- Weather script loads after app, but waits for DOM ready -->
+    <script src="weather.js?v=1.0.14"></script>
+</body>
+</html>
